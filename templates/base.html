@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moscow Trafik Wet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block head %}{% endblock %}
+</head>
+<head>
+    <!-- ... другие мета-теги ... -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+{% if 'username' in session %}
+  <div class="user-info">
+    Вы вошли как: {% if current_user.is_authenticated %}
+    {{ current_user.username[0]|upper }}
+{% else %}
+    Гость
+{% endif %}
+    <a href="{{ url_for('logout') }}">Выйти</a>
+  </div>
+{% endif %}
+{% block content %}{% endblock %}
+    </div>
+{% block scripts %}{% endblock %}
+</body>
+</html>
